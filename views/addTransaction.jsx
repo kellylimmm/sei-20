@@ -9,7 +9,7 @@ class AddTransaction extends React.Component {
           <h3>Please key in Name and Amount:</h3>
              <form action="/transaction" method="POST">
                 <p>Name: </p> <input type="text" name="name"/><br/>
-                <p>Amount: </p> <input type="number" name="amount"/><br/>
+                <p>Amount: </p> <input type="number" name="amount" step="0.01"/><br/>
                 <input type="submit"/>
             </form>
 

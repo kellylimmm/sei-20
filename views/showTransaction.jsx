@@ -17,7 +17,7 @@ class ShowTransaction extends React.Component {
                         {el.amount}
                     </p>
                     <form action={url} method="POST">
-                    <button>{el.id} Delete </button>
+                    <button> Delete </button>
                     </form>
                 </div>
             )

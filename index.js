@@ -139,26 +139,33 @@ else {
 
 app.get('/transaction/show', (request, response) => {
 
-    const queryString = 'SELECT * from owings';
+    let user_id = request.cookies['user_id'];
+    let hashedValue = sha256(SALT + user_id);
+    let id = [user_id];
 
-    pool.query(queryString, (err, result) => {
+    if (request.cookies['hasLoggedIn'] === hashedValue) {
 
-        if (err) {
-            console.log(err);
-            response.send("query error");
+        const queryString = 'SELECT SUM(amount) AS amount,name FROM owings GROUP BY name,user_id HAVING user_id = $1';
 
-        } else {
-            let data = {
-                debtor : result.rows
-            };
-            // response.send( result.rows );
+        pool.query(queryString, id, (err, result) => {
 
-            response.render('showTransaction', data);
-        }
-        });
+            if (err) {
+                console.log(err);
+                response.send("query error");
+
+            } else {
+                let data = {
+                    debtor : result.rows
+                };
+                // response.send( result.rows );
+
+                response.render('showTransaction', data);
+            }
+            });
+    }
 });
 
-// ================ Render Add Transaction Page ======
+// ================ Render Add Transaction Page ====== OK
 
 app.get('/transaction/add', (request, response) => {
 
@@ -167,7 +174,7 @@ app.get('/transaction/add', (request, response) => {
 
 
 
-// ====== Add Transaction Amount =========
+// ====== Add Transaction Amount ========= OK
 
 app.post('/transaction/', (request,response) => {
 
@@ -187,7 +194,7 @@ app.post('/transaction/', (request,response) => {
     });
 });
 
-// ===== Delete a Transaction =====
+// ===== Delete a Transaction ===== OK
 
 app.get('/transation/delete', (request, response) => {
 let id = [request.body.amount, request.body.name]
@@ -226,6 +233,31 @@ app.delete('/transaction/:id', (request, response) => {
     });
 });
 
+
+//======== Update a Transaction =========
+
+app.put('/transaction/:id/', (request,response) => {
+
+    // let id = parseInt(request.body.id);
+    let name = request.body.name;
+    let amount = request.body.amount;
+
+    const values = [name, photo_url, nationality];
+    const queryString = "UPDATE owings SET name=$1, amount=$2 WHERE id=" + request.params.id;
+
+    // const values = [request.body.name, request.body.photo_url, request.body.nationality];
+
+    pool.query(queryString, values, (err,result) => {
+    if (err) {
+        console.log('error', err.message);
+        response.send('query error');
+    } else {
+
+        response.send('Edited Transaction!');
+    }
+
+})
+});
 
 
 //=========== Cookies ======= OK
