@@ -8,7 +8,7 @@ class Register extends React.Component {
                     <form method="POST" action = "/register">
                     <h1> Register Here: </h1>
                         <p>
-                            Name
+                            Username
                             <br/>
                             <input name ="name"/>
                         </p>

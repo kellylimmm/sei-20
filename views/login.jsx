@@ -17,7 +17,8 @@ class Login extends React.Component {
                 <input name="password" type="password"/>
             </p>
             <p>
-                <input type="submit"/>
+
+            <input type="submit"/> New? Register <a href="/register">Here </a>.
             </p>
           </form>
         </body>

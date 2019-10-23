@@ -1,7 +1,7 @@
 console.log("starting up!!");
 
 const express = require('express');
-// const methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const pg = require('pg');
 const cookieParser = require('cookie-parser');
 
@@ -38,7 +38,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 
 // Set react-views to be the default view engine
@@ -51,7 +51,7 @@ app.engine('jsx', reactEngine);
 app.use(cookieParser());
 
 
-// ======= User to register ======
+// ======= User to register ====== OK
 
 app.get('/register', (request,response) => {
     response.render('register')
@@ -79,12 +79,12 @@ app.post('/register', (request,response) => {
           console.log('query result:', result);
 
 
-          response.send( result.rows );
+          response.redirect( 'login' );
         }
       });
 })
 
-// ====== User to login ========
+// ====== User to login ======== OK
 
 app.get('/login', (request, response) => {
     response.render('login');
@@ -119,7 +119,7 @@ if (result.rows.length > 0) {
         response.cookie('user_id', user_id);
         response.cookie('hasLoggedIn', hashedCookie);
 
-        response.send('LOGGING IN.....');
+        response.redirect('/transaction/show'); //REDIRECT TO ('/showTransaction')
     } else {
         response.status(403).send('wrong password');
     }
@@ -135,8 +135,100 @@ else {
 
 });
 
+// ======== Show Transaction. Landing Page ========
 
-//=========== Cookies =======
+app.get('/transaction/show', (request, response) => {
+
+    const queryString = 'SELECT * from owings';
+
+    pool.query(queryString, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.send("query error");
+
+        } else {
+            let data = {
+                debtor : result.rows
+            };
+            // response.send( result.rows );
+
+            response.render('showTransaction', data);
+        }
+        });
+});
+
+// ================ Render Add Transaction Page ======
+
+app.get('/transaction/add', (request, response) => {
+
+  response.render('addTransaction');
+});
+
+
+
+// ====== Add Transaction Amount =========
+
+app.post('/transaction/', (request,response) => {
+
+    let text = 'INSERT INTO owings (user_id,amount,name) VALUES($1,$2, $3) RETURNING *';
+    let values = [request.cookies['user_id'],request.body.amount,request.body.name];
+    pool.query(text, values, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.send("query error");
+
+        } else {
+            console.log('query result:', result);
+            // response.send( result.rows );
+            response.redirect('/transaction/show')//REDIRECT TO SHOW TRANSACTION PAGE
+        }
+    });
+});
+
+// ===== Delete a Transaction =====
+
+app.get('/transation/delete', (request, response) => {
+let id = [request.body.amount, request.body.name]
+
+const queryString = 'SELECT * FROM owings';
+
+pool.query(queryString, (err, result) => {
+
+    if(err) {
+        console.log("Error: ", err.message);
+    } else {
+        const data = {
+            delete : result.rows
+        }
+    response.render('deleteTransaction', data);
+
+    }
+})
+
+})
+
+app.delete('/transaction/:id', (request, response) => {
+    // console.log(request.params.id)
+    // response.send("deleteeee")
+    let id = request.params.id;
+
+    const queryString = "DELETE from owings WHERE id= " + id;
+
+    pool.query(queryString, (err, result) => {
+
+        if (err) {
+            console.log("Error: ", err.message);
+        } else {
+            response.redirect('/transaction/show');
+        }
+    });
+});
+
+
+
+//=========== Cookies ======= OK
 
 app.get('/special', (request,response) => {
 
