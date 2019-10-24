@@ -1,5 +1,6 @@
 var React = require('react');
 
+
 class ShowTransaction extends React.Component {
     render() {
         console.log(this.props.debtor);

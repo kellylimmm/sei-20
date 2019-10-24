@@ -30,14 +30,14 @@ class Login extends React.Component {
                         <div className="input-group-prepend">
                             <span className="input-group-text"><i className="fas fa-user"></i></span>
                         </div>
-                        <input type="text" className="form-control" placeholder="username" name="name"/>
+                        <input type="text" className="form-control" placeholder="Username" name="name"/>
 
                     </div>
                     <div className="input-group form-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text"><i className="fas fa-key"></i></span>
                         </div>
-                        <input type="password" className="form-control" placeholder="password" name="password"/>
+                        <input type="password" className="form-control" placeholder="Password" name="password"/>
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Login" className="btn float-right login_btn" a href="/register"/>
