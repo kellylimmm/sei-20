@@ -9,6 +9,10 @@ height: 100%;
 font-family: 'Numans', sans-serif;
 }
 
+tr,h1 {
+	color: white;
+}
+
 .container{
 height: 100%;
 align-content: center;
