@@ -6,7 +6,9 @@ class ShowTransaction extends React.Component {
 
         let debtor = this.props.debtor.map(el => {
 
+
             let url = "/transaction/" + el.id + "?_method=DELETE";
+            console.log(url)
 
             return (
                 <div>
