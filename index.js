@@ -32,7 +32,7 @@ pool.on('error', function (err) {
 // Init express app
 const app = express();
 
-
+app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
@@ -230,14 +230,14 @@ pool.query(queryString, (err, result) => {
 
 })
 
-app.delete('/transaction/:id', (request, response) => {
+app.delete('/transaction/:name', (request, response) => {
     console.log(request.params, "HHHH")
     // response.send("deleteeee")
-    let id = request.params.id;
+    let name = request.params.name;
 
-    const queryString = "DELETE from owings WHERE id= " + id;
-
-    pool.query(queryString, (err, result) => {
+    const queryString = "DELETE from owings WHERE name = $1";
+    const arr = [name]
+    pool.query(queryString, arr,(err, result) => {
 
         if (err) {
             console.log("Error: ", err.message);

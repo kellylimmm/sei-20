@@ -4,10 +4,10 @@ class ShowTransaction extends React.Component {
     render() {
         console.log(this.props.debtor);
 
-        let debtor = this.props.debtor.map(el => {
+        let debtor = this.props.sum.map(el => {
 
 
-            let url = "/transaction/" + el.id + "?_method=DELETE";
+            let url = "/transaction/" + el.name + "?_method=DELETE";
             console.log(url)
 
             return (
