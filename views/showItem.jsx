@@ -1,14 +1,14 @@
 var React = require('react');
 
 
-class ShowTransaction extends React.Component {
+class ShowItem extends React.Component {
     render() {
-        console.log(this.props.debtor);
+        console.log(this.props.item);
 
-        let debtor = this.props.sum.map(el => {
+        let item = this.props.item.map(el => {
 
 
-            let url = "/transaction/" + el.name + "?_method=DELETE";
+            let url = "/transaction/item" + el.name + "?_method=DELETE";
             console.log(url)
 
             return (
@@ -16,7 +16,7 @@ class ShowTransaction extends React.Component {
                     <tr>
                           <th scope="row"></th>
                           <td>{el.name}</td>
-                          <td>{el.amount}</td>
+                          <td>{el.item}</td>
                           <td><form action={url} method="POST">
                           <button> Delete </button>
                           </form>
@@ -43,8 +43,8 @@ class ShowTransaction extends React.Component {
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/transaction/additem">Add Item <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/transaction/showitem">Show Item</a>
+      <a class="nav-item nav-link active" href="/transaction/add">Add Transaction <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/transaction/show">Show Transaction</a>
       <a class="nav-item nav-link" href="#">Log Out</a>
     </div>
   </div>
@@ -57,17 +57,17 @@ class ShowTransaction extends React.Component {
                             <tr>
                               <th scope="col"></th>
                               <th scope="col">Name</th>
-                              <th scope="col">Amount</th>
-                              <th scope="col">Paid</th>
+                              <th scope="col">Item</th>
+                              <th scope="col">Returned</th>
                             </tr>
                       </thead>
 
                       <tbody>
-                    {debtor}
+                    {item}
                       </tbody>
                 </table>
 
-                <a href="/transaction/add" className="row justify-content-center"><button>Add Transaction</button></a>
+                <a href="/transaction/additem" className="row justify-content-center"><button>Add Item</button></a>
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -80,4 +80,4 @@ class ShowTransaction extends React.Component {
     }
 }
 
-module.exports = ShowTransaction;
+module.exports = ShowItem;

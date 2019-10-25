@@ -84,6 +84,12 @@ app.post('/register', (request,response) => {
       });
 })
 
+// ======== Home ======
+
+app.get('/home', (request, response) => {
+    response.render('home');
+})
+
 // ====== User to login ======== OK
 
 app.get('/login', (request, response) => {
@@ -119,7 +125,7 @@ if (result.rows.length > 0) {
         response.cookie('user_id', user_id);
         response.cookie('hasLoggedIn', hashedCookie);
 
-        response.redirect('/transaction/show'); //REDIRECT TO ('/showTransaction')
+        response.redirect('home'); //REDIRECT TO ('/showTransaction')
     } else {
         response.status(403).send('wrong password');
     }
@@ -207,6 +213,75 @@ app.post('/transaction/', (request,response) => {
         }
     });
 });
+
+//================ ITEMS ============================
+
+
+// ================ Render Add Items Page ======
+
+app.get('/transaction/additem', (request, response) => {
+
+  response.render('addItem');
+});
+
+
+
+// ====== Add Items =========
+
+app.post('/transaction/item', (request,response) => {
+
+    let text = 'INSERT INTO items (user_id,item,name) VALUES($1,$2, $3) RETURNING *';
+    let values = [request.cookies['user_id'],request.body.item,request.body.name];
+    pool.query(text, values, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.send("query error");
+
+        } else {
+            console.log('query result:', result);
+            // response.send( result.rows );
+            response.redirect('/transaction/showitem')//REDIRECT TO SHOW ITEMS PAGE
+        }
+    });
+});
+
+// ======== Show Item. Landing Page ========
+
+app.get('/transaction/showitem', (request, response) => {
+
+    let user_id = request.cookies['user_id'];
+    let hashedValue = sha256(SALT + user_id);
+    let id = [user_id];
+
+    if (request.cookies['hasLoggedIn'] === hashedValue) {
+
+        const queryText = 'SELECT * FROM items';
+
+        pool.query(queryText, (err, result) => {
+
+            if (err) {
+                console.log(err);
+                response.send("query error");
+
+
+                    } else {
+                        let data = {
+                            item : result.rows
+                        };
+                        // response.send( result.rows );
+                        console.log(result.rows, "HAHAHA")
+
+                        response.render('showItem', data);
+                    }
+        });
+    }
+                // response.send( result.rows );
+});
+
+
+
+
 
 // ===== Delete a Transaction ===== OK
 

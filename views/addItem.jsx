@@ -1,6 +1,6 @@
 var React = require("react");
 
-class AddTransaction extends React.Component {
+class AddItem extends React.Component {
   render() {
     return (
       <html>
@@ -20,11 +20,11 @@ class AddTransaction extends React.Component {
     <div className="d-flex justify-content-center h-100">
         <div className="card">
             <div className="card-header">
-               <h3>Please key in Amount:</h3>
+               <h3>Please key in Item:</h3>
 
             </div>
             <div className="card-body">
-                 <form action="/transaction" method="POST">
+                 <form action="/transaction/item" method="POST">
                     <div className="input-group form-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text"><i className="fas fa-user"></i></span>
@@ -34,9 +34,9 @@ class AddTransaction extends React.Component {
                     </div>
                     <div className="input-group form-group">
                         <div className="input-group-prepend">
-                            <span className="input-group-text"><i className="fas fa-money-check"></i></span>
+                            <span className="input-group-text"><i className="fas fa-list"></i></span>
                         </div>
-                        <input type="number" className="form-control" placeholder="Amount" name="amount" step="0.01"/>
+                        <input type="text" className="form-control" placeholder="Item" name="item"/>
                     </div>
                     <div className="form-group">
                         <input type="submit"/>
@@ -58,4 +58,4 @@ class AddTransaction extends React.Component {
   }
 }
 
-module.exports = AddTransaction;
+module.exports = AddItem;

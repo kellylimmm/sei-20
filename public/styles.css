@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css?family=Numans|Kaushan+Script|Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=Numans|Kaushan+Script|Pacifico');
 
 html,body{
 background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
@@ -17,10 +17,11 @@ tr {
 }
 
 h1 {
-	font-family: 'Kaushan Script', cursive;
+	font-family: 'Pacifico', cursive;
 	color: white;
 
 }
+
 
 .navbar {
 	background-color: transparent;

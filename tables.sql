@@ -10,3 +10,10 @@ CREATE TABLE IF NOT EXISTS owings (
 	amount FLOAT,
 	name TEXT
 );
+
+CREATE TABLE IF NOT EXISTS items (
+	id SERIAL PRIMARY KEY,
+	user_id INTEGER,
+	item TEXT,
+	name TEXT
+);
