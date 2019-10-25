@@ -8,7 +8,7 @@ class ShowItem extends React.Component {
         let item = this.props.item.map(el => {
 
 
-            let url = "/transaction/item" + el.name + "?_method=DELETE";
+            let url = "/transaction/" + el.name + "/delete" + "?_method=DELETE";
             console.log(url)
 
             return (
@@ -43,9 +43,9 @@ class ShowItem extends React.Component {
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/transaction/add">Add Transaction <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/transaction/show">Show Transaction</a>
-      <a class="nav-item nav-link" href="#">Log Out</a>
+      <a class="nav-item nav-link active" href="/transaction/add">Add Amount <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/transaction/show">Show Amount</a>
+      <a class="nav-item nav-link" href="/logout">Log Out</a>
     </div>
   </div>
 </nav>

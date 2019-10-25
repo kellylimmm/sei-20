@@ -21,9 +21,9 @@ class Home extends React.Component {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="/transaction/show">Show Transaction <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link active" href="/transaction/show">Show Amount <span class="sr-only">(current)</span></a>
               <a class="nav-item nav-link" href="/transaction/showitem">Show Item</a>
-              <a class="nav-item nav-link" href="#">Log Out</a>
+              <a class="nav-item nav-link" href="/logout">Log Out</a>
             </div>
           </div>
         </nav>
@@ -32,7 +32,7 @@ class Home extends React.Component {
 
 
                 <div className="row justify-content-center mt-5">
-                <a href="/transaction/add" className="mr-5"  ><button>Add Transaction</button></a>
+                <a href="/transaction/add" className="mr-5"  ><button>Add Amount</button></a>
                 <a href="/transaction/additem"><button>Add Item</button></a>
                 </div>
 
