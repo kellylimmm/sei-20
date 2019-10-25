@@ -41,6 +41,8 @@ class AddTransaction extends React.Component {
                     <div className="form-group">
                         <input type="submit"/>
                     </div>
+
+
                 </form>
             </div>
 

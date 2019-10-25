@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
+@import url('https://fonts.googleapis.com/css?family=Numans|Kaushan+Script|Permanent+Marker');
 
 html,body{
 background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
@@ -9,9 +9,24 @@ height: 100%;
 font-family: 'Numans', sans-serif;
 }
 
-tr,h1 {
+tr {
 	color: white;
+/*	font-family: 'Permanent Marker', cursive;
+	font-size: 30px;*/
+
 }
+
+h1 {
+	font-family: 'Kaushan Script', cursive;
+	color: white;
+
+}
+
+.navbar {
+	background-color: transparent;
+}
+
+
 
 .container{
 height: 100%;
