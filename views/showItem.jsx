@@ -43,8 +43,17 @@ class ShowItem extends React.Component {
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Show Amount
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/transaction/showindividualamount">Show Individual Amount</a>
+            <a class="dropdown-item" href="/transaction/show">Show Total Amount</a>
+
+        </div>
+      </li>
       <a class="nav-item nav-link active" href="/transaction/add">Add Amount <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/transaction/show">Show Amount</a>
       <a class="nav-item nav-link" href="/logout">Log Out</a>
     </div>
   </div>
