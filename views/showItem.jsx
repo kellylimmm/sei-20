@@ -8,7 +8,7 @@ class ShowItem extends React.Component {
         let item = this.props.item.map(el => {
 
 
-            let url = "/transaction/" + el.name + "/delete" + "?_method=DELETE";
+            let url = "/transaction/" + el.id + "/delete" + "?_method=DELETE";
             console.log(url)
 
             return (

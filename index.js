@@ -231,48 +231,6 @@ app.get('/transaction/showindividualamount', (request, response) => {
         });
 });
 
-// ========== Delete individual amounts =============
-
-
-// app.get('/transaction/delete/individual', (request, response) => {
-// let id = [request.body.amount, request.body.name]
-
-// const queryString = 'SELECT * FROM owings';
-
-// pool.query(queryString, (err, result) => {
-
-//     if(err) {
-//         console.log("Error: ", err.message);
-//     } else {
-//         const data = {
-//             delete : result.rows
-//         }
-//     response.redirect('deleteIndividualAmount', data);
-
-//     }
-// })
-
-// })
-
-// app.delete('/transaction/:name/individual', (request, response) => {
-//     console.log('/transaction/:name');
-
-//     // response.send("deleteeee")
-//     let name = request.params.name;
-
-//     const queryString = "DELETE from owings WHERE name = $1";
-//     const arr = [name]
-//     pool.query(queryString, arr,(err, result) => {
-
-//         if (err) {
-//             console.log("Error: ", err.message);
-//         } else {
-//             response.redirect('/transaction/showindividualamount');
-//         }
-//     });
-// });
-
-
 // ================ Render Add Transaction Page ====== OK
 
 app.get('/transaction/add', (request, response) => {
@@ -297,7 +255,7 @@ app.post('/transaction/', (request,response) => {
         } else {
             console.log('query result:', result);
             // response.send( result.rows );
-            response.redirect('/transaction/show')//REDIRECT TO SHOW TRANSACTION PAGE
+            response.redirect('/transaction/showindividualamount')//REDIRECT TO SHOW TRANSACTION PAGE
         }
     });
 });
@@ -441,14 +399,13 @@ pool.query(queryString, (err, result) => {
 
 })
 
-app.delete('/transaction/:name/delete', (request, response) => {
-      console.log('/transaction/:name/delete' )
+app.delete('/transaction/:id/delete', (request, response) => {
     // console.log(request.params, "HHHH")
     // response.send("deleteeee")
-    let name = request.params.name;
+    let id = request.params.id;
 
-    const queryString = "DELETE from items WHERE name = $1";
-    const arr = [name]
+    const queryString = "DELETE from items WHERE id = $1";
+    const arr = [id]
     pool.query(queryString, arr,(err, result) => {
 
         if (err) {
@@ -458,35 +415,6 @@ app.delete('/transaction/:name/delete', (request, response) => {
         }
     });
 });
-
-
-
-
-//======== Update a Transaction =========
-
-// app.put('/transaction/:id/', (request,response) => {
-
-//     // let id = parseInt(request.body.id);
-//     let name = request.body.name;
-//     let amount = request.body.amount;
-
-//     const values = [name, photo_url, nationality];
-//     const queryString = "UPDATE owings SET name=$1, amount=$2 WHERE id=" + request.params.id;
-
-//     // const values = [request.body.name, request.body.photo_url, request.body.nationality];
-
-//     pool.query(queryString, values, (err,result) => {
-//     if (err) {
-//         console.log('error', err.message);
-//         response.send('query error');
-//     } else {
-
-//         response.send('Edited Transaction!');
-//     }
-
-// })
-// });
-
 
 //=========== Cookies ======= OK
 
@@ -504,8 +432,6 @@ if (request.cookies['hasLoggedIn'] === hashedValue) {
 
 
 });
-
-
 
 
 /**
