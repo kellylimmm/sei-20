@@ -1,14 +1,14 @@
 var React = require('react');
 
 
-class ShowTransaction extends React.Component {
+class ShowIndividualAmount extends React.Component {
     render() {
-        console.log(this.props.debtor);
+        console.log(this.props.individual);
 
-        let debtor = this.props.sum.map(el => {
+        let individual = this.props.individual.map(el => {
 
 
-            let url = "/transaction/" + el.name + "?_method=DELETE";
+            let url = "/transaction/addindividualamount" + el.name + "?_method=DELETE";
             console.log(url)
 
             return (
@@ -17,10 +17,6 @@ class ShowTransaction extends React.Component {
                           <th scope="row"></th>
                           <td>{el.name}</td>
                           <td>{el.amount}</td>
-                          <td><form action={url} method="POST">
-                          <button> Delete </button>
-                          </form>
-                          </td>
                     </tr>
                 </div>
             )
@@ -58,12 +54,12 @@ class ShowTransaction extends React.Component {
                               <th scope="col"></th>
                               <th scope="col">Name</th>
                               <th scope="col">Amount</th>
-                              <th scope="col">Paid</th>
+
                             </tr>
                       </thead>
 
                       <tbody>
-                    {debtor}
+                    {individual}
                       </tbody>
                 </table>
 
@@ -80,4 +76,4 @@ class ShowTransaction extends React.Component {
     }
 }
 
-module.exports = ShowTransaction;
+module.exports = ShowIndividualAmount;

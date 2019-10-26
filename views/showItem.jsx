@@ -50,7 +50,7 @@ class ShowItem extends React.Component {
   </div>
 </nav>
 
-                <h1 className="row justify-content-center"> Tally: </h1>
+                <h1 className="row justify-content-center mb-3"> Tally: </h1>
 
                 <table class="table">
                       <thead>

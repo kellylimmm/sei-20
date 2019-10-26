@@ -2,7 +2,7 @@ var React = require("react");
 
 class DeleteItem extends React.Component {
   render() {
-    console.log(this.props, "LLLLL")
+    console.log(this.props)
     return (
       <html>
         <head />

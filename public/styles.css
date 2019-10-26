@@ -11,8 +11,9 @@ font-family: 'Numans', sans-serif;
 
 tr {
 	color: white;
-/*	font-family: 'Permanent Marker', cursive;
-	font-size: 30px;*/
+/*	font-family: 'Permanent Marker', cursive;*/
+	font-size: 20px;
+	text-align: center;
 
 }
 

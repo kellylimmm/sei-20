@@ -185,6 +185,92 @@ app.get('/transaction/show', (request, response) => {
     }
 });
 
+// ============= Add Individual amounts ==============
+
+
+app.post('/transaction/addindividualamount', (request,response) => {
+
+    let text = 'INSERT INTO owings (user_id,amount,name) VALUES($1,$2, $3) RETURNING *';
+    let values = [request.cookies['user_id'],request.body.amount,request.body.name];
+    pool.query(text, values, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.send("query error");
+
+        } else {
+            console.log('query result:', result);
+            // response.send( result.rows );
+            response.redirect('/transaction/showindividualamount')//REDIRECT TO SHOW TRANSACTION PAGE
+        }
+    });
+});
+
+
+// ============ Show individual amounts ===============
+
+
+app.get('/transaction/showindividualamount', (request, response) => {
+
+    const queryString = 'SELECT * from owings';
+
+    pool.query(queryString, (err, result) => {
+
+        if (err) {
+            console.log(err);
+            response.send("query error");
+
+        } else {
+            let data = {
+                individual : result.rows
+            };
+            // response.send( result.rows );
+
+            response.render('showindividualamount', data);
+        }
+        });
+});
+
+// ========== Delete individual amounts =============
+
+
+// app.get('/transaction/delete/individual', (request, response) => {
+// let id = [request.body.amount, request.body.name]
+
+// const queryString = 'SELECT * FROM owings';
+
+// pool.query(queryString, (err, result) => {
+
+//     if(err) {
+//         console.log("Error: ", err.message);
+//     } else {
+//         const data = {
+//             delete : result.rows
+//         }
+//     response.redirect('deleteIndividualAmount', data);
+
+//     }
+// })
+
+// })
+
+// app.delete('/transaction/:name/individual', (request, response) => {
+//     console.log('/transaction/:name');
+
+//     // response.send("deleteeee")
+//     let name = request.params.name;
+
+//     const queryString = "DELETE from owings WHERE name = $1";
+//     const arr = [name]
+//     pool.query(queryString, arr,(err, result) => {
+
+//         if (err) {
+//             console.log("Error: ", err.message);
+//         } else {
+//             response.redirect('/transaction/showindividualamount');
+//         }
+//     });
+// });
 
 
 // ================ Render Add Transaction Page ====== OK
@@ -215,6 +301,8 @@ app.post('/transaction/', (request,response) => {
         }
     });
 });
+
+//======== Log out ============== OK
 
 app.get('/logout', (request,response) => {
     response.clearCookie('user_id');
@@ -267,7 +355,7 @@ app.delete('/transaction/:name', (request, response) => {
 //================ ITEMS ============================
 
 
-// ================ Render Add Items Page ======
+// ================ Render Add Items Page ====== OK
 
 app.get('/transaction/additem', (request, response) => {
 
@@ -276,7 +364,7 @@ app.get('/transaction/additem', (request, response) => {
 
 
 
-// ====== Add Items =========
+// ====== Add Items ========= OK
 
 app.post('/transaction/item', (request,response) => {
 
@@ -296,7 +384,7 @@ app.post('/transaction/item', (request,response) => {
     });
 });
 
-// ======== Show Item. Landing Page ========
+// ======== Show Item. Landing Page ======== OK
 
 app.get('/transaction/showitem', (request, response) => {
 
@@ -330,7 +418,7 @@ app.get('/transaction/showitem', (request, response) => {
 });
 
 
- // ======== Delete Item ===============
+ // ======== Delete Item =============== OK
 
  app.get('/transaction/deleteitem', (request, response) => {
 
