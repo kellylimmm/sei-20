@@ -8,7 +8,7 @@ class ShowIndividualAmount extends React.Component {
         let individual = this.props.individual.map(el => {
 
 
-            let url = "/transaction/addindividualamount" + el.name + "?_method=DELETE";
+            let url = "/transaction/addindividualamount/" + el.name + "?_method=DELETE";
             console.log(url)
 
             return (
