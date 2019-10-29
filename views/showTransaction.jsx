@@ -58,7 +58,7 @@ class ShowTransaction extends React.Component {
                             <tr>
                               <th scope="col"></th>
                               <th scope="col">Name</th>
-                              <th scope="col">Amount</th>
+                              <th scope="col">Amount (SGD)</th>
                               <th scope="col">Paid</th>
                             </tr>
                       </thead>

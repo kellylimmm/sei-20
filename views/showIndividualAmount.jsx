@@ -54,7 +54,7 @@ class ShowIndividualAmount extends React.Component {
                             <tr>
                               <th scope="col"></th>
                               <th scope="col">Name</th>
-                              <th scope="col">Amount</th>
+                              <th scope="col">Amount (SGD)</th>
 
                             </tr>
                       </thead>

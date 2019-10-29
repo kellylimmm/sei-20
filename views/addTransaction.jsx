@@ -36,7 +36,7 @@ class AddTransaction extends React.Component {
                         <div className="input-group-prepend">
                             <span className="input-group-text"><i className="fas fa-money-check"></i></span>
                         </div>
-                        <input type="number" className="form-control" placeholder="Amount" name="amount" step="0.01"/>
+                        <input type="number" className="form-control" placeholder="Amount (SGD)" name="amount" step="0.01"/>
                     </div>
                     <div className="form-group">
                         <input type="submit"/>
