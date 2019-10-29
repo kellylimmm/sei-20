@@ -32,6 +32,7 @@ class Home extends React.Component {
         </div>
       </li>
               <a class="nav-item nav-link" href="/transaction/showitem">Show Item</a>
+              <a class="nav-item nav-link" href="/currency/">Currency</a>
               <a class="nav-item nav-link" href="/logout">Log Out</a>
             </div>
           </div>

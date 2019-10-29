@@ -42,6 +42,7 @@ class ShowIndividualAmount extends React.Component {
      <a class="nav-item nav-link" href="/transaction/show">Total Amount</a>
       <a class="nav-item nav-link active" href="/transaction/additem">Add Item <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="/transaction/showitem">Show Item</a>
+       <a class="nav-item nav-link" href="/currency/">Currency</a>
       <a class="nav-item nav-link" href="/logout">Log Out</a>
     </div>
   </div>

@@ -54,6 +54,7 @@ class ShowItem extends React.Component {
         </div>
       </li>
       <a class="nav-item nav-link active" href="/transaction/add">Add Amount <span class="sr-only">(current)</span></a>
+
       <a class="nav-item nav-link" href="/logout">Log Out</a>
     </div>
   </div>

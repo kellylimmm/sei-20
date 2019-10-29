@@ -433,6 +433,93 @@ if (request.cookies['hasLoggedIn'] === hashedValue) {
 
 });
 
+// ========== Currency Converter API ==============
+
+
+var https = require('https');
+
+function convertCurrency(amount, fromCurrency, toCurrency, cb) {
+  var apiKey = 'fbee056ddbf2e385147c';
+
+  fromCurrency = encodeURIComponent(fromCurrency);
+  toCurrency = encodeURIComponent(toCurrency);
+  var query = fromCurrency + '_' + toCurrency;
+
+  var url = 'https://free.currconv.com/api/v7/convert?q=USD_SGD,GBP_SGD,EUR_SGD,JPY_SGD,AUD_SGD&compact=ultra&apiKey=fbee056ddbf2e385147c';
+
+  https.get(url, function(res){
+      var body = '';
+
+      res.on('data', function(chunk){
+          body += chunk;
+      });
+
+      res.on('end', function(){
+          try {
+            var jsonObj = JSON.parse(body);
+
+            var val = jsonObj[query];
+            if (val) {
+              var total = val * amount;
+              // cb(null, Math.round(total * 100) / 100);
+              cb(null, (total * 100) / 100);
+
+            } else {
+              var err = new Error("Value not found for " + query);
+              console.log(err);
+              cb(err);
+            }
+          } catch(e) {
+            console.log("Parse error: ", e);
+            cb(e);
+          }
+      });
+  }).on('error', function(e){
+        console.log("Got an error: ", e);
+        cb(e);
+
+  });
+
+}
+
+app.get('/currency', (request, response) => {
+    convertCurrency(1, 'USD', 'SGD', function(err, amount) {
+        let data = {
+            currencyUsd : amount
+        }
+        convertCurrency(1, 'GBP', 'SGD', function(err,amount) {
+            data["currencyGbp"] = amount;
+            // console.log(amount);
+
+            convertCurrency(1, 'EUR', 'SGD', function(err,amount) {
+            data["currencyEur"] = amount;
+
+                convertCurrency(1, 'JPY', 'SGD', function(err,amount) {
+                data["currencyJpy"] = amount;
+
+                    convertCurrency(1, 'AUD', 'SGD', function(err,amount) {
+                    data["currencyAud"] = amount;
+
+            response.render('currency', data);
+
+                    })
+
+                })
+
+            })
+        })
+
+    })
+
+})
+
+app.post('/currency/new', (request,response) => {
+
+});
+
+
+
+
 
 /**
  * ===================================
