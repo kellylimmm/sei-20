@@ -11,6 +11,8 @@ var SALT = "payuplah";
 
 // const pool = new pg.Pool(config);
 
+const pool = new pg.Pool(configs);
+
 pool.on('error', function (err) {
   console.log('idle client error', err.message, err.stack);
 });
@@ -47,7 +49,7 @@ if( process.env.DATABASE_URL ){
 }
 
 //this is the same
-const pool = new pg.Pool(configs);
+
 
 /**
  * ===================================
