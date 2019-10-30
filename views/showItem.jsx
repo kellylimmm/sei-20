@@ -36,29 +36,29 @@ class ShowItem extends React.Component {
             <body>
 
 
-<nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="/home">Home</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Show Amount
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/transaction/showindividualamount">Show Individual Amount</a>
-            <a class="dropdown-item" href="/transaction/show">Show Total Amount</a>
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="/home">Home</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Show Amount
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/transaction/showindividualamount">Show Individual Amount</a>
+                                    <a class="dropdown-item" href="/transaction/show">Show Total Amount</a>
 
-        </div>
-      </li>
-      <a class="nav-item nav-link active" href="/transaction/add">Add Amount <span class="sr-only">(current)</span></a>
+                                </div>
+                            </li>
+                            <a class="nav-item nav-link active" href="/transaction/add">Add Amount <span class="sr-only">(current)</span></a>
 
-      <a class="nav-item nav-link" href="/logout">Log Out</a>
-    </div>
-  </div>
-</nav>
+                            <a class="nav-item nav-link" href="/logout">Log Out</a>
+                        </div>
+                    </div>
+                </nav>
 
                 <h1 className="row justify-content-center mb-3"> Tally: </h1>
 
