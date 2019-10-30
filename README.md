@@ -7,13 +7,13 @@ This app aims to ease users from the trouble of keeping track of the amount or i
 
 ## Technologies Used
 
-Javascript
-NodeJS
-Express
-React
-PostgreSQL
-Bootstrap 4
-Currency Converter API
+* Javascript
+* NodeJS
+* Express
+* React
+* PostgreSQL
+* Bootstrap 4
+* Currency Converter API
 
 ## Approach
 
