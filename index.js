@@ -9,19 +9,45 @@ var sha256 = require('js-sha256');
 
 var SALT = "payuplah";
 
-// Initialise postgres client
-const config = {
-  user: 'kellylim',
-  host: '127.0.0.1',
-  database: 'payup_db',
-  port: 5432,
-};
-
-const pool = new pg.Pool(config);
+// const pool = new pg.Pool(config);
 
 pool.on('error', function (err) {
   console.log('idle client error', err.message, err.stack);
 });
+
+//====================
+
+const url = require('url');
+
+
+if( process.env.DATABASE_URL ){
+
+  const params = url.parse(process.env.DATABASE_URL);
+  const auth = params.auth.split(':');
+
+  //make the configs object
+  var configs = {
+    user: auth[0],
+    password: auth[1],
+    host: params.hostname,
+    port: params.port,
+    database: params.pathname.split('/')[1],
+    ssl: true
+  };
+
+}else{
+
+  //otherwise we are on the local network
+  var configs = {
+      user: 'kellylim',
+      host: '127.0.0.1',
+      database: 'payup_db',
+      port: 5432
+  };
+}
+
+//this is the same
+const pool = new pg.Pool(configs);
 
 /**
  * ===================================
@@ -526,7 +552,9 @@ app.post('/currency/new', (request,response) => {
  * Listen to requests on port 3000
  * ===================================
  */
-const server = app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+const PORT = process.env.PORT || 3000;
+
+const server = app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port '+PORT+' ~~~'));
 
 let onClose = function(){
 
