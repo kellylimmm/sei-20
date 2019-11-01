@@ -254,7 +254,7 @@ app.get('/transaction/showindividualamount', (request, response) => {
             };
             // response.send( result.rows );
 
-            response.render('showindividualamount', data);
+            response.render('showIndividualAmount', data);
         }
         });
 });
