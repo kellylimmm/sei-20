@@ -102,7 +102,7 @@ app.post('/register', (request,response) => {
 
         if (err) {
           console.error('query error:', err.stack);
-          response.send( 'query error' );
+          response.send( err );
         } else {
           console.log('query result:', result);
 
@@ -452,11 +452,11 @@ app.get('/special', (request,response) => {
     let hashedValue = sha256(SALT + user_id);
 
 
-if (request.cookies['hasLoggedIn'] === hashedValue) {
-    response.send("LOGGED IN");
-} else {
-    response.redirect('/login');
-}
+    if (request.cookies['hasLoggedIn'] === hashedValue) {
+        response.send("LOGGED IN");
+    } else {
+        response.redirect('/login');
+    }
 
 
 });
