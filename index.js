@@ -91,7 +91,7 @@ app.post('/register', (request,response) => {
 
     let hashedPassword = sha256(request.body.password + SALT);
 
-    const queryString ='INSERT INTO users (name,password) VALUES ($1, $2) RETURNING *';
+    const queryString ='INSERT INTO users (username,password) VALUES ($1, $2) RETURNING *';
 
     const values = [
     request.body.name,
@@ -128,7 +128,7 @@ app.post('/login', (request, response) => {
     let requestUsername = request.body.name;
     let requestPassword = request.body.password;
 
-    const queryString = "SELECT * FROM users WHERE name= '"+requestUsername+"'";
+    const queryString = "SELECT * FROM users WHERE username= '"+requestUsername+"'";
     console.log("db query", queryString);
 
     pool.query(queryString, (err, result) => {
